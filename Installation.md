@@ -7,7 +7,7 @@
 
 
 
-# Add docker groub to sudo
+# Add docker group to sudo
 > sudo usermod -aG docker e-dlx
 # Docker for Linux Setup and Tips
 Use docker's install script at get.docker.com
