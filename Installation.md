@@ -7,7 +7,7 @@
 
 
 
-# Add docker group to sudo
+# Add docker groub to sudo
 > sudo usermod -aG docker e-dlx
 # Docker for Linux Setup and Tips
 Use docker's install script at get.docker.com
@@ -62,11 +62,11 @@ cd vmware-tools-distrib
 
 # Install Docker Machine
 https://docs.docker.com/machine/install-machine/
-> base=https://github.com/docker/machine/releases/download/v0.16.0 &&
-  curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
+```
+base=https://github.com/docker/machine/releases/download/v0.16.0 && curl -L $base/docker-machine-$(uname -s)-$(uname -m) >/tmp/docker-machine &&
   sudo mv /tmp/docker-machine /usr/local/bin/docker-machine &&
   chmod +x /usr/local/bin/docker-machine
-
+```
 > docker-machine version
 
 # Run more nodes in cloud or machine using Docker-Machine
@@ -96,4 +96,57 @@ https://code.visualstudio.com/docs/setup/linux
 # Beautiful Shell
 > www.breadfisher.com/shell
 
-# 
+
+# Install docker on Kali
+```
+Step 1: Install Dependency packages
+Start the installation by ensuring that all the packages used by docker as dependencies are installed.
+
+> sudo apt update
+> sudo apt -y install curl gnupg2 apt-transport-https software-properties-common ca-certificates  
+Step 2: Import Docker GPG key:
+Import Docker GPG key used for signing Docker packages:
+
+> curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+Step 3: Add the Docker repository to Kali Linux
+Add Docker repository which contain the latest stable releases of Docker CE.
+
+> echo "deb [arch=amd64] https://download.docker.com/linux/debian buster stable" | sudo tee  /etc/apt/sources.list.d/docker.list
+This command will add repository URL to /etc/apt/sources.list.d/docker.list.
+
+Step 4: Install Docker on Kali Linux
+Update the apt package index.
+
+
+$ sudo apt update
+gn:1 http://dl.google.com/linux/chrome/deb stable InRelease
+Get:3 https://download.docker.com/linux/debian buster InRelease [44.4 kB]                          
+Hit:2 http://kali.download/kali kali-rolling InRelease
+Hit:4 http://dl.google.com/linux/chrome/deb stable Release
+Get:5 https://download.docker.com/linux/debian buster/stable amd64 Packages [10.9 kB]
+Fetched 55.3 kB in 1s (45.2 kB/s)
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+186 packages can be upgraded. Run 'apt list --upgradable' to see them.
+To install Docker CE on Kali Linux, run the command:
+
+sudo apt install docker-ce docker-ce-cli containerd.io
+Hit the y key to start installation of Docker on Kali Linux.
+
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  aufs-dkms aufs-tools cgroupfs-mount dkms linux-compiler-gcc-9-x86 linux-headers-5.4.0-kali3-amd64
+  linux-headers-5.4.0-kali3-common linux-headers-amd64 linux-kbuild-5.4 pigz
+Suggested packages:
+  aufs-dev menu
+The following NEW packages will be installed:
+  aufs-dkms aufs-tools cgroupfs-mount containerd.io dkms docker-ce docker-ce-cli linux-compiler-gcc-9-x86
+  linux-headers-5.4.0-kali3-amd64 linux-headers-5.4.0-kali3-common linux-headers-amd64 linux-kbuild-5.4 pigz
+0 upgraded, 13 newly installed, 0 to remove and 186 not upgraded.
+Need to get 98.1 MB of archives.
+After this operation, 446 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+```
